@@ -13,30 +13,16 @@
     <section id="summary">
         <h2>Current Post Title</h2>
         <article>
-            <img src="{% static 'blog/images/mountains.jpg' %}" alt="Post Image">
-            <address>By Stanislav</address>
+            <img src="{% static 'blog/images/mountains.jpg' %}" alt={{ post.title }}>
+            <address>{{ post.author }}</address>
             <div>
-                Last updated on<time>September 17th</time>
+                Last updated on <time>{{ post.date }}</time>
             </div>
         </article>
     </section>
 
     <main>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore doloremque est hic impedit,
-            libero nihil nisi numquam quam totam unde ut voluptatem voluptatum. Nihil officia quod repellat. Placeat,
-            soluta.
-        </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore doloremque est hic impedit,
-            libero nihil nisi numquam quam totam unde ut voluptatem voluptatum. Nihil officia quod repellat. Placeat,
-            soluta.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore doloremque est hic impedit,
-            libero nihil nisi numquam quam totam unde ut voluptatem voluptatum. Nihil officia quod repellat. Placeat,
-            soluta.
-        </p>
+        <p>{{ post.content }}</p>
     </main>
 {% endblock content %}
 

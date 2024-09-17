@@ -135,6 +135,7 @@ posts = [
 # Create your views here.
 def index(request):
     posts.sort(key=lambda x: x["date"])
+    # sorted_post = sorted(posts, key=lambda x: x["date"])
     latest_posts = posts[-3:]
     return render(request, "blog/index.html", {
         "posts": latest_posts,
