@@ -8,5 +8,11 @@
 {% endblock css-files %}
 
 {% block content %}
+    <section id="all-posts">
+        <h2>My Posts Collection</h2>
 
+        <ul>
+            {% include "blog/includes/post.html" %}
+        </ul>
+    </section>
 {% endblock content %}
