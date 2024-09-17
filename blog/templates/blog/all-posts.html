@@ -4,6 +4,7 @@
 {% block page-title %}All Posts{% endblock page-title %}
 
 {% block css-files %}
+    <link rel="stylesheet" href="{% static 'blog/post.css' %}">
     <link rel="stylesheet" href="{% static 'blog/all-posts.css' %}">
 {% endblock css-files %}
 
@@ -12,6 +13,11 @@
         <h2>My Posts Collection</h2>
 
         <ul>
+            {% include "blog/includes/post.html" %}
+            {% include "blog/includes/post.html" %}
+            {% include "blog/includes/post.html" %}
+            {% include "blog/includes/post.html" %}
+            {% include "blog/includes/post.html" %}
             {% include "blog/includes/post.html" %}
         </ul>
     </section>
