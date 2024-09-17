@@ -11,11 +11,14 @@
 {% block content %}
     <section id="all-posts">
         <h2>My Posts Collection</h2>
-
-        <ul>
-            {% for post in posts%}
-                {% include "blog/includes/post.html" %}
-            {% endfor %}
-        </ul>
+        {% if posts %}
+            <ul>
+                {% for post in posts%}
+                    {% include "blog/includes/post.html" %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No posts available yet</p>
+        {% endif %}
     </section>
 {% endblock content %}
