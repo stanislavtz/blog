@@ -155,7 +155,7 @@ def all_posts(request):
 
 def post_details(request, slug):
     try:
-        current_post = [post for post in posts if post["slug"] == slug][0]
+        current_post = next(post for post in posts if post["slug"] == slug)
         return render(request, "blog/post-details.html", { "post": current_post })
     except:
         raise Http404()
