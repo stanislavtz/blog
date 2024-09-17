@@ -11,9 +11,9 @@
 
 {% block content %}
     <header id="main-navigation">
-        <h1><a href="">Stan's Blog</a></h1>
+        <h1><a href="{% url 'index-page'%}">Stan's Blog</a></h1>
         <nav>
-            <a href="">All Posts</a>
+            <a href="{% url 'all-posts-page' %}">All Posts</a>
         </nav>
     </header>
 
@@ -30,7 +30,7 @@
         <ul>
             <li>
                 <article class="post">
-                    <a href="">
+                    <a href="{% url 'post-details-page' 1 %}">
                         <img src="" alt="Mountain Hiking">
                         <div class="post__content">
                             <h3>Mountain Hiking</h3>
