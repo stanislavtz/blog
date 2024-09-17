@@ -40,10 +40,19 @@
   width: 60rem;
   margin: -6rem auto 2rem auto;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 #latest-posts h2 {
   text-align: center;
+}
+
+#latest-posts img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin: 0;
+  margin-top: 1rem
 }
 
 #latest-posts ul {
@@ -56,6 +65,17 @@
 
 #latest-posts li {
   flex: 1;
+}
+
+.post a {
+  text-decoration: none;
+}
+
+.post h3,
+.post p {
+  color: black;
+  margin: 1rem 0;
+  
 }
 
 #about {

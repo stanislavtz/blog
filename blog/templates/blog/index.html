@@ -19,7 +19,7 @@
 
     <section id="welcome">
         <header>
-            <img src="" alt="Stanislav's photo - the author of this blog">
+            <img src="{% static 'blog/images/stanislav.png' %}" alt="Stanislav's photo - the author of this blog">
             <h2>STANISLAV'S BLOG</h2>
         </header>
         <p>Hello I'm Stan and I love to blog about tech and the Earth's flora and fauna.</p>
@@ -31,7 +31,7 @@
             <li>
                 <article class="post">
                     <a href="{% url 'post-details-page' 1 %}">
-                        <img src="" alt="Mountain Hiking">
+                        <img src="{% static 'blog/images/mountains.jpg' %}" alt="Mountain Hiking">
                         <div class="post__content">
                             <h3>Mountain Hiking</h3>
                             <p>
