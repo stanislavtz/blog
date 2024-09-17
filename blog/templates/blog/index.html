@@ -21,9 +21,15 @@
 
     <section id="latest-posts">
         <h2>My Latest posts</h2>
-        <ul>
-            {% include "blog/includes/post.html" %}
-        </ul>
+        {% if has_posts > 0 %}
+            <ul>
+                {% for post in posts %}
+                    {% include "blog/includes/post.html" %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No posts available yet</p>
+        {% endif %}
     </section>
 
     <section id="about">
