@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.http import Http404
 from django.shortcuts import render
 
 posts = [
@@ -134,19 +135,28 @@ posts = [
 
 # Create your views here.
 def index(request):
-    posts.sort(key=lambda x: x["date"])
-    # sorted_post = sorted(posts, key=lambda x: x["date"])
-    latest_posts = posts[-3:]
-    return render(request, "blog/index.html", {
-        "posts": latest_posts,
-        "has_posts": len(latest_posts) > 0
-    })
+    try:
+        posts.sort(key=lambda x: x["date"])
+        # sorted_post = sorted(posts, key=lambda x: x["date"])
+        latest_posts = posts[-3:]
+        return render(request, "blog/index.html", {
+            "posts": latest_posts,
+            "has_posts": len(latest_posts) > 0
+        })
+    except:
+        raise Http404()
 
 
 def all_posts(request):
-    return render(request, "blog/all-posts.html", { "posts": posts })
+    try:
+        return render(request, "blog/all-posts.html", { "posts": posts })
+    except:
+        raise Http404()
 
 
 def post_details(request, slug):
-    current_post = [post for post in posts if post["slug"] == slug][0]
-    return render(request, "blog/post-details.html", { "post": current_post })
+    try:
+        current_post = [post for post in posts if post["slug"] == slug][0]
+        return render(request, "blog/post-details.html", { "post": current_post })
+    except:
+        raise Http404()
