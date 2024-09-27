@@ -28,6 +28,9 @@ def get_all_posts(request):
 def post_details(request, slug):
     try:
         post = Post.objects.get(slug=slug)
-        return render(request, "blog/post-details.html", { "post": post })
+        return render(request, "blog/post-details.html", {
+            "post": post,
+            "tags": post.tags.all()
+        })
     except:
         raise Http404()

@@ -47,9 +47,18 @@ body {
   font-weight: bold;
 }
 
+#summary span {
+  color: white;
+}
+
+#summary a {
+  color: white;
+  text-decoration: none;
+}
+
 #summary time {
   font-weight: bold;
-} 
+}
 
 main {
   width: 90%;
