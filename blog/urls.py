@@ -5,5 +5,5 @@ urlpatterns = [
 	path("", views.index, name="index-page"),
 	path("posts", views.get_all_posts, name="all-posts-page"),
 	path("posts/<slug:slug>", views.post_details, name="post-details-page"),
-	path("author/<id>", lambda x: x, name="author-details-page")
+	path("author/<id>", views.get_author_details, name="author-details-page")
 ]

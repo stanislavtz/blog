@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 
-from .models import Post
+from .models import Post, Author
 
 # Create your views here.
 
@@ -34,3 +34,8 @@ def post_details(request, slug):
         })
     except:
         raise Http404()
+
+
+def get_author_details(request, id):
+    author = Author.objects.get(id=id)
+    return render(request, "blog/author-details.html", {"author": author})
