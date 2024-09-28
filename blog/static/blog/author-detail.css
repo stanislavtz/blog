@@ -1,0 +1,50 @@
+body {
+  background-color: #e7e7e7;
+}
+
+#main-navigation {
+  background-color: #390281;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+#summary {
+  margin: 8rem auto 3rem auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 90rem;
+  border-radius: 16px;
+  background-color: #5706c0;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  height: 22rem;
+}
+
+#summary h2 {
+  color: white;
+  font-size: 4.5rem;
+  margin-bottom: 0.25rem;
+}
+
+#summary span {
+  color: #390281;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 5px;
+}
+
+#summary a {
+  color: white;
+  text-decoration: none;
+}
+
+#summary li {
+  color: white;
+  margin: 0.25rem 0;
+}
+
+ul {
+  margin: 1rem 0;
+  list-style: none;
+  padding: 0;
+}
+
