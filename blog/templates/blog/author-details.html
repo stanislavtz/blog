@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page-title %}
+    Author's details
+{% endblock %}
+
+{% block css-files %}
+     <link rel="stylesheet" href="{% static 'blog/post-detail.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section id="summary">
+        <h2>Author Name</h2>
+        <div>
+            Author's posts list
+        </div>
+    </section>
+
+    <main>
+        <p>{{ post.content|linebreaks }}</p>
+    </main>
+{% endblock content %}
