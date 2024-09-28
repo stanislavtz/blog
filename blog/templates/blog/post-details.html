@@ -20,7 +20,7 @@
         <article>
             <img src="{% static 'blog/images/'|add:post.image %}" alt={{ post.title }}>
             <address>By <a href="mailto:{{post.author.e_mail}}">{{ post.author }}</a> </address>
-            <address><a href="">{{ post.author }} Details Page</a> </address>
+            <address><a href="{% url 'author-details-page' post.author.id %}">{{ post.author }} Details Page</a> </address>
 
             <div>
                 Last updated on <time>{{ post.date|date:"d M Y" }}</time>
