@@ -16,7 +16,7 @@
             <span>Author's posts list</span>
             <ul>
                 {% for post in posts %}
-                    <li>{{ post.title }}</li>
+                <a href="{% url 'post-details-page' post.slug %}"><li>{{ post.title }}</li></a>
                 {% endfor %}
             </ul>
         </div>
