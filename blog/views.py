@@ -38,4 +38,9 @@ def post_details(request, slug):
 
 def get_author_details(request, id):
     author = Author.objects.get(id=id)
-    return render(request, "blog/author-details.html", {"author": author})
+    author_posts = author.posts.all()
+
+    return render(request, "blog/author-details.html", {
+        "author": author,
+        "posts": author_posts,
+    })
