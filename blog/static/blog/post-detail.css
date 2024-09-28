@@ -22,6 +22,7 @@ body {
 #summary h2 {
   color: white;
   font-size: 4.5rem;
+  margin-bottom: 0.25rem;
 }
 
 #summary article {
@@ -48,7 +49,10 @@ body {
 }
 
 #summary span {
-  color: white;
+  color: #390281;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 5px;
 }
 
 #summary a {
