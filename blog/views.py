@@ -23,12 +23,10 @@ class HomePageView(ListView):
         return query
 
 
-def get_all_posts(request):
-    try:
-        all_posts = Post.objects.all()
-        return render(request, "blog/all-posts.html", { "posts": all_posts })
-    except:
-        raise Http404()
+class AllPostsView(ListView):
+    model = Post
+    template_name = "blog/all-posts.html"
+    context_object_name = "posts"
 
 
 def post_details(request, slug):
