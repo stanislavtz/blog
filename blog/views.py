@@ -6,16 +6,13 @@ from .models import Post, Author
 
 class HomePageView(ListView):
     model = Post
-    template_name = "blog/index.html"
+    ordering = ["-date"]
     context_object_name = "posts"
+    template_name = "blog/index.html"
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["has_posts"] = len(self.object_list) > 0
-        return context
 
     def get_queryset(self):
-        query = super().get_queryset().order_by("-date")[:3]
+        query = super().get_queryset()[:3]
         return query
 
 

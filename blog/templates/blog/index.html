@@ -21,7 +21,7 @@
 
     <section id="latest-posts">
         <h2>My Latest posts</h2>
-        {% if has_posts %}
+        {% if posts %}
             <ul>
                 {% for post in posts %}
                     {% include "blog/includes/post.html" %}
