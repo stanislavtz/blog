@@ -1,20 +1,26 @@
 from django.http import Http404
 from django.shortcuts import render
 
+from django.views.generic import ListView
+
 from .models import Post, Author
 
 # Create your views here.
 
-def index(request):
-    try:
-        latest_posts = Post.objects.all().order_by("-date", "-id")[:3]
+class HomePageView(ListView):
+    model = Post
+    template_name = "blog/index.html"
+    context_object_name = "posts"
 
-        return render(request, "blog/index.html", {
-            "posts": latest_posts,
-            "has_posts": len(latest_posts) > 0
-        })
-    except:
-        raise Http404()
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["has_posts"] = len(self.object_list) > 0
+        print(self.object_list)
+        return context
+
+    def get_queryset(self):
+        query = super().get_queryset().order_by("-date")[:3]
+        return query
 
 
 def get_all_posts(request):
