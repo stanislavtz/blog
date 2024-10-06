@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Post, Author
 
@@ -15,7 +15,6 @@ class HomePageView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context["has_posts"] = len(self.object_list) > 0
-        print(self.object_list)
         return context
 
     def get_queryset(self):
@@ -29,22 +28,16 @@ class AllPostsView(ListView):
     context_object_name = "posts"
 
 
-def post_details(request, slug):
-    try:
-        post = Post.objects.get(slug=slug)
-        return render(request, "blog/post-details.html", {
-            "post": post,
-            "tags": post.tags.all()
-        })
-    except:
-        raise Http404()
+class PostDetailsView(DetailView):
+    model = Post
+    template_name = "blog/post-details.html"
 
 
-def get_author_details(request, id):
-    author = Author.objects.get(id=id)
-    author_posts = author.posts.all()
+class AuthorDetailsView(DetailView):
+    model = Author
+    template_name = "blog/author-details.html"
 
-    return render(request, "blog/author-details.html", {
-        "author": author,
-        "posts": author_posts,
-    })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context["posts"] = self.object.posts.all()
+        return context
