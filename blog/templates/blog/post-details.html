@@ -10,6 +10,14 @@
 {% endblock css-files %}
 
 {% block content %}
+    {% if comment_form.errors %}
+        <div id="alert">
+            <h2>Saving the comment failed</h2>
+            <p>Please fix form errors displayed in red!</p>
+            <a href="#comment-form">Fix</a>
+        </div>
+    {% endif %}
+
     <section id="summary">
         <h2>{{ post.title }}</h2>
         <div>
