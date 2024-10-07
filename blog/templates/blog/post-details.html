@@ -33,12 +33,23 @@
         <p>{{ post.content|linebreaks }}</p>
     </main>
 
+    <section id="comments">
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in post_comments %}
+                <li>{{ comment.text }}</li>
+            {% empty %}
+                <p>No comments available yet</p>
+            {% endfor %}
+        </ul>
+    </section>
+
     <section id="comment-form">
         <h2>Your Comment</h2>
         <form action="" method="POST">
             {% csrf_token %}
             {% for field in comment_form %}
-                <div class="form-control">
+                <div class="form-control {% if field.errors %}invalid{% endif %}">
                     {{ field.label_tag }}
                     {{ field }}
                     {{ field.errors }}
