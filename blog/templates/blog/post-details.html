@@ -14,16 +14,17 @@
         <h2>{{ post.title }}</h2>
         <div>
             {% for tag in tags %}
-                <span>{{ tag.caption }}</span>
+                <span class="tag">{{ tag.caption }}</span>
             {% endfor %}
         </div>
         <article>
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
-            <address>By <a href="mailto:{{post.author.e_mail}}">{{ post.author }}</a> </address>
-            <address><a href="{% url 'author-details-page' post.author.id %}">{{ post.author }} Details Page</a> </address>
+            <address>By <a href="mailto:{{post.author.e_mail}}">{{ post.author }}</a></address>
+            <address><a href="{% url 'author-details-page' post.author.id %}">{{ post.author }} Details Page</a></address>
 
             <div>
-                Last updated on <time>{{ post.date|date:"d M Y" }}</time>
+                Last updated on
+                <time>{{ post.date|date:"d M Y" }}</time>
             </div>
         </article>
     </section>
@@ -31,6 +32,20 @@
     <main>
         <p>{{ post.content|linebreaks }}</p>
     </main>
+
+    <section id="comment-form">
+        <h2>Your Comment</h2>
+        <form action="" method="POST">
+            {% for field in comment_form %}
+                <div class="form-control">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <button>Save Comment</button>
+        </form>
+    </section>
 {% endblock content %}
 
 
