@@ -73,8 +73,15 @@ class PostDetailsView(View):
 
 
 class ReadLaterView(View):
-    @staticmethod
-    def post(request):
+    def get(self, request):
+        stored_posts = request.session.get("read_later_posts")
+        if not stored_posts:
+            stored_posts = []
+
+        posts = Post.objects.filter(id__in=stored_posts)
+        return render(request, "blog/read_later.html", {"posts": posts})
+
+    def post(self, request):
         stored_posts = request.session.get("read_later_posts")
 
         if not stored_posts: # if stored_posts is None:
@@ -85,8 +92,9 @@ class ReadLaterView(View):
         if post_id not in stored_posts:
             stored_posts.append(post_id)
             request.session["read_later_posts"] = stored_posts
-
-        print(stored_posts)
+        else:
+            stored_posts.remove(post_id)
+            request.session["read_later_posts"] = stored_posts
 
         return HttpResponseRedirect("/")
 
