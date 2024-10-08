@@ -32,12 +32,9 @@ class PostDetailsView(View):
 
     def get(self, request, slug):
         post = Post.objects.get(slug=slug)
-        context = {
-            "post": post,
-            "tags": post.tags.all(),
-            "post_comments": post.comments.all(),
-            "comment_form": CommentForm()
-        }
+        form = CommentForm()
+        context = self.get_context(post, form)
+
         return render(request, self.template_name, context)
 
     def post(self, request, slug):
@@ -55,14 +52,18 @@ class PostDetailsView(View):
             new_comment.save()
             return HttpResponseRedirect(reverse("post-details-page", args=[slug]))
 
-        context = {
-            "post": post,
-            "tags": post.tags.all(),
-            "post_comments": post.comments.all(),
-            "comment_form": form
-        }
+        context = self.get_context(post, form)
 
         return render(request, self.template_name, context)
+
+    @staticmethod
+    def get_context(post, form):
+        return {
+            "post": post,
+            "tags": post.tags.all(),
+            "post_comments": post.comments.all().order_by("-id"),
+            "comment_form": form
+        }
 
 
 class AuthorDetailsView(DetailView):
