@@ -28,11 +28,13 @@
         </div>
 
         <div id="read-later">
-            <form action="{% url 'read-later-page' %}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" value="{{ post.id }}" name="post_id">
-                <button>Read Later</button>
-            </form>
+            {% if not add_for_later %}
+                <form action="{% url 'read-later-page' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ post.id }}" name="post_id">
+                    <button>Read Later</button>
+                </form>
+            {% endif %}
         </div>
 
         <article>

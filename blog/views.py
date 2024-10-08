@@ -33,7 +33,7 @@ class PostDetailsView(View):
     def get(self, request, slug):
         post = Post.objects.get(slug=slug)
         form = CommentForm()
-        context = self.get_context(post, form)
+        context = self.get_context(request, post, form)
 
         return render(request, self.template_name, context)
 
@@ -53,17 +53,22 @@ class PostDetailsView(View):
 
             return HttpResponseRedirect(reverse("post-details-page", args=[slug]))
 
-        context = self.get_context(post, form)
+        context = self.get_context(request, post, form)
 
         return render(request, self.template_name, context)
 
     @staticmethod
-    def get_context(post, form):
+    def get_context(request, post, form):
+        add_for_later_list = request.session.get("read_later_posts")
+        if not add_for_later_list:
+            add_for_later_list = []
+
         return {
             "post": post,
             "tags": post.tags.all(),
             "post_comments": post.comments.all().order_by("-id"),
-            "comment_form": form
+            "comment_form": form,
+            "add_for_later": post.id in add_for_later_list
         }
 
 
