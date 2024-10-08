@@ -68,7 +68,7 @@ class PostDetailsView(View):
             "tags": post.tags.all(),
             "post_comments": post.comments.all().order_by("-id"),
             "comment_form": form,
-            "add_for_later": post.id in add_for_later_list
+            "is_add_for_later": post.id in add_for_later_list
         }
 
 
