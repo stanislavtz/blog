@@ -25,10 +25,17 @@
                 <span class="tag">{{ tag.caption }}</span>
             {% endfor %}
         </div>
+        <div id="read-later">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ post.id }}" name="post_id">
+                <button>Read Later</button>
+            </form>
+        </div>
         <article>
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
             <address>By <a href="mailto:{{post.author.e_mail}}">{{ post.author }}</a></address>
-            <address><a href="{% url 'author-details-page' post.author.id %}">{{ post.author }} Details Page</a></address>
+            <address><a href="{% url 'author-details-page' post.author.id %}">{{ post.author }}'s Details</a></address>
 
             <div>
                 Last updated on
