@@ -50,6 +50,7 @@ class PostDetailsView(View):
                 post=post
             )
             new_comment.save()
+
             return HttpResponseRedirect(reverse("post-details-page", args=[slug]))
 
         context = self.get_context(post, form)
@@ -64,6 +65,25 @@ class PostDetailsView(View):
             "post_comments": post.comments.all().order_by("-id"),
             "comment_form": form
         }
+
+
+class ReadLaterView(View):
+    @staticmethod
+    def post(request):
+        stored_posts = request.session.get("read_later_posts")
+
+        if not stored_posts: # if stored_posts is None:
+            stored_posts = []
+
+        post_id = int(request.POST["post_id"])
+
+        if post_id not in stored_posts:
+            stored_posts.append(post_id)
+            request.session["read_later_posts"] = stored_posts
+
+        print(stored_posts)
+
+        return HttpResponseRedirect("/")
 
 
 class AuthorDetailsView(DetailView):

@@ -28,7 +28,7 @@
         </div>
 
         <div id="read-later">
-            <form action="" method="POST">
+            <form action="{% url 'read-later-page' %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="{{ post.id }}" name="post_id">
                 <button>Read Later</button>
