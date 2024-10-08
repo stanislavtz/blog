@@ -42,10 +42,12 @@
     </main>
 
     <section id="comments">
-        <h2>Comments</h2>
         <ul>
             {% for comment in post_comments %}
-                <li>{{ comment.text }}</li>
+                <li>
+                    <h2>{{ comment.user_name }}</h2>
+                    <p>{{ comment.text|linebreaks }}</p>
+                </li>
             {% empty %}
                 <p>No comments available yet</p>
             {% endfor %}
