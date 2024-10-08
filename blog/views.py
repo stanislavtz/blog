@@ -75,10 +75,12 @@ class PostDetailsView(View):
 class ReadLaterView(View):
     def get(self, request):
         stored_posts = request.session.get("read_later_posts")
+
         if not stored_posts:
             stored_posts = []
 
         posts = Post.objects.filter(id__in=stored_posts)
+
         return render(request, "blog/read_later.html", {"posts": posts})
 
     def post(self, request):
