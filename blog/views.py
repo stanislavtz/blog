@@ -60,6 +60,7 @@ class PostDetailsView(View):
     @staticmethod
     def get_context(request, post, form):
         add_for_later_list = request.session.get("read_later_posts")
+
         if not add_for_later_list:
             add_for_later_list = []
 
