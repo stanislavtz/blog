@@ -89,13 +89,9 @@ class ReadLaterView(View):
 
         post_id = int(request.POST["post_id"])
 
-        if post_id not in stored_posts:
-            stored_posts.append(post_id)
-            request.session["read_later_posts"] = stored_posts
-        else:
-            stored_posts.remove(post_id)
-            request.session["read_later_posts"] = stored_posts
+        stored_posts.remove(post_id) if post_id in stored_posts else stored_posts.append(post_id)
 
+        request.session["read_later_posts"] = stored_posts
         return HttpResponseRedirect("/")
 
 
